@@ -187,11 +187,11 @@ download \
   "1757dcc11590ef3b5a56c701fd286345" \
   "https://github.com/sekrit-twc/zimg/archive/"
 
-download \
-  "v2.1.2.tar.gz" \
-  "openjpeg-2.1.2.tar.gz" \
-  "40a7bfdcc66280b3c1402a0eb1a27624" \
-  "https://github.com/uclouvain/openjpeg/archive/"
+# download \
+#   "v2.1.2.tar.gz" \
+#   "openjpeg-2.1.2.tar.gz" \
+#   "40a7bfdcc66280b3c1402a0eb1a27624" \
+#   "https://github.com/uclouvain/openjpeg/archive/"
 
 download \
   "v0.6.1.tar.gz" \
@@ -388,12 +388,12 @@ PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_
 make -j $jval
 make install
 
-echo "*** Building openjpeg ***"
-cd $BUILD_DIR/openjpeg-*
-[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
-PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_DIR" -DBUILD_SHARED_LIBS:bool=off
-make -j $jval
-make install
+# echo "*** Building openjpeg ***"
+# cd $BUILD_DIR/openjpeg-*
+# [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
+# PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_DIR" -DBUILD_SHARED_LIBS:bool=off
+# make -j $jval
+# make install
 
 echo "*** Building zimg ***"
 cd $BUILD_DIR/zimg-release-*
@@ -483,6 +483,7 @@ if [ "$platform" = "linux" ]; then
     --extra-libs="-lpthread -lm -lz" \
     --extra-ldexeflags="-static" \
     --bindir="$BIN_DIR" \
+    --enable-encoder=h264_vaapi,hevc_vaapi,av1_vaapi \
     --enable-pic \
     --enable-ffplay \
     --enable-fontconfig \
@@ -493,9 +494,6 @@ if [ "$platform" = "linux" ]; then
     --enable-avutil \
     --enable-bsfs \
     --enable-swscale \
-    --enable-encoder=h264_v4l2m2m \
-    --enable-v4l2_m2m \
-    --enable-version3 \
     --enable-libass \
     --enable-libfribidi \
     --enable-libfdk-aac \
@@ -503,7 +501,6 @@ if [ "$platform" = "linux" ]; then
     --enable-libmp3lame \
     --enable-libopencore-amrnb \
     --enable-libopencore-amrwb \
-    --enable-libopenjpeg \
     --enable-libopus \
     --enable-librtmp \
     --enable-libsoxr \
@@ -518,10 +515,13 @@ if [ "$platform" = "linux" ]; then
     --enable-libx265 \
     --enable-libxvid \
     --enable-libzimg \
+    --enable-librist \
+    --enable-libsrt \
     --enable-nonfree \
     --enable-openssl \
-    --enable-librist \
-    --enable-libsrt
+    --enable-runtime-cpudetect \
+    --enable-vaapi \
+    --enable-version3
 elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
   PKG_CONFIG_PATH="${TARGET_DIR}/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:/usr/local/Cellar/openssl/1.0.2o_1/lib/pkgconfig" ./configure \
@@ -550,7 +550,6 @@ elif [ "$platform" = "darwin" ]; then
     --enable-libmp3lame \
     --enable-libopencore-amrnb \
     --enable-libopencore-amrwb \
-    --enable-libopenjpeg \
     --enable-libopus \
     --enable-librtmp \
     --enable-libsoxr \
