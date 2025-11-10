@@ -483,7 +483,6 @@ if [ "$platform" = "linux" ]; then
     --extra-libs="-lpthread -lm -lz" \
     --extra-ldexeflags="-static" \
     --bindir="$BIN_DIR" \
-    --enable-encoder=h264_vaapi,hevc_vaapi,av1_vaapi \
     --enable-pic \
     --enable-ffplay \
     --enable-fontconfig \
@@ -520,7 +519,6 @@ if [ "$platform" = "linux" ]; then
     --enable-nonfree \
     --enable-openssl \
     --enable-runtime-cpudetect \
-    --enable-vaapi \
     --enable-version3
 elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
