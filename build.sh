@@ -176,9 +176,9 @@ download \
   "https://github.com/rust-media/soxr/archive/"
 
 download \
-  "release-0.98b.tar.gz" \
-  "vid.stab-release-0.98b.tar.gz" \
-  "299b2f4ccd1b94c274f6d94ed4f1c5b8" \
+  "4bd81e3cdd778e2e0edc591f14bba158ec40cfa1.tar.gz" \
+  "vid.stab-4bd81e3cdd778e2e0edc591f14bba158ec40cfa1.tar.gz" \
+  "nil" \
   "https://github.com/georgmartius/vid.stab/archive/"
 
 download \
@@ -380,9 +380,9 @@ echo "*** Building libvidstab ***"
 cd $BUILD_DIR/vid.stab-release-*
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 if [ "$platform" = "linux" ]; then
-  sed -i "s/vidstab SHARED/vidstab STATIC/" ./CMakeLists.txt
+  sed -i "s/vidstab \${SOURCES}/vidstab STATIC \${SOURCES}/" ./CMakeLists.txt
 elif [ "$platform" = "darwin" ]; then
-  sed -i "s/vidstab SHARED/vidstab STATIC/" ./CMakeLists.txt
+  sed -i "s/vidstab \${SOURCES}/vidstab STATIC \${SOURCES}/" ./CMakeLists.txt
 fi
 PATH="$BIN_DIR:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$TARGET_DIR"
 make -j $jval
