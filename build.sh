@@ -230,8 +230,8 @@ download \
   "https://github.com/libsdl-org/SDL/releases/download/release-2.0.22"
 
 download \
-  "161f3b51e282cd6d2bc146b2755f14dab73ca014.zip" \
-  "libva-161f3b51e282cd6d2bc146b2755f14dab73ca014" \
+  "161f3b51e282cd6d2bc146b2755f14dab73ca014.tar.gz" \
+  "libva-161f3b51e282cd6d2bc146b2755f14dab73ca014.tar.gz" \
   "nil" \
   "https://github.com/intel/libva/archive"
 
