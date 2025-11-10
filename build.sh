@@ -218,9 +218,9 @@ download \
   "https://github.com/xiph/speex/archive/"
 
 download \
-  "n6.0.tar.gz" \
-  "ffmpeg6.0.tar.gz" \
-  "586ca7cc091d26fd0a4c26308950ca51" \
+  "n7.1.1.tar.gz" \
+  "ffmpeg7.1.1.tar.gz" \
+  "5f8157e206bc430cbed92fb62144f30b" \
   "https://github.com/FFmpeg/FFmpeg/archive"
 
 download \
@@ -488,6 +488,13 @@ if [ "$platform" = "linux" ]; then
     --enable-fontconfig \
     --enable-frei0r \
     --enable-gpl \
+    --enable-static \
+    --enable-avcodec \
+    --enable-avutil \
+    --enable-bsfs \
+    --enable-swscale \
+    --enable-encoder=h264_v4l2m2m \
+    --enable-v4l2_m2m \
     --enable-version3 \
     --enable-libass \
     --enable-libfribidi \
@@ -530,6 +537,11 @@ elif [ "$platform" = "darwin" ]; then
     --enable-fontconfig \
     --enable-frei0r \
     --enable-gpl \
+    --enable-static \
+    --enable-avcodec \
+    --enable-avutil \
+    --enable-bsfs \
+    --enable-swscale \
     --enable-version3 \
     --enable-libass \
     --enable-libfribidi \
@@ -567,12 +579,15 @@ CBS_SOURCE=(
     "libavcodec/cbs.o"
     "libavcodec/cbs_h2645.o"
     "libavcodec/cbs_av1.o"
+    "libavcodec/cbs_vp8.o"
     "libavcodec/cbs_vp9.o"
     "libavcodec/cbs_mpeg2.o"
+    "libavcodec/cbs_jpeg.o"
     "libavcodec/cbs_sei.o"
     "libavcodec/h264_levels.o"
     "libavcodec/h2645_parse.o"
-    "libavcodec/vp9data.o"
+    "libavcodec/vp8data.o"
+    "libavcodec/refstruct.o"
     "libavutil/intmath.o"
 )
 
@@ -602,7 +617,7 @@ install -Dvm644 libavutil/x86/asm.h -t "$TARGET_DIR"/include/libavutil/x86/
 install -Dvm644 libavcodec/vlc.h -t "$TARGET_DIR"/include/libavcodec/
 install -Dvm644 libavcodec/sei.h -t "$TARGET_DIR"/include/libavcodec/
 install -Dvm644 libavcodec/h264.h -t "$TARGET_DIR"/include/libavcodec/
-install -Dvm644 libavcodec/hevc.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/hevc/hevc.h -t "${PKGDIR}"/usr/include/libavcodec/hevc/
 
 # Clean
 make distclean
