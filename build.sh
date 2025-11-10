@@ -299,6 +299,9 @@ make install
 
 echo "*** Building harfbuzz ***"
 cd $BUILD_DIR/harfbuzz-*
+rm config.guess config.sub
+curl -fsSL "https://gitweb.git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD" -o config.guess
+curl -fsSL "http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD" -o config.sub
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 ./configure --prefix=$TARGET_DIR --disable-shared --enable-static
 make -j $jval
@@ -306,6 +309,9 @@ make install
 
 echo "*** Building fribidi ***"
 cd $BUILD_DIR/fribidi-*
+rm config.guess config.sub
+curl -fsSL "https://gitweb.git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD" -o config.guess
+curl -fsSL "http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD" -o config.sub
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 ./configure --prefix=$TARGET_DIR --disable-shared --enable-static --disable-docs
 make -j $jval
@@ -321,6 +327,9 @@ make install
 
 echo "*** Building mp3lame ***"
 cd $BUILD_DIR/lame*
+rm config.guess config.sub
+curl -fsSL "https://gitweb.git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD" -o config.guess
+curl -fsSL "http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD" -o config.sub
 # The lame build script does not recognize aarch64, so need to set it manually
 uname -a | grep -q 'aarch64' && lame_build_target="--build=arm-linux" || lame_build_target=''
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
@@ -330,6 +339,9 @@ make install
 
 echo "*** Building opus ***"
 cd $BUILD_DIR/opus*
+rm config.guess config.sub
+curl -fsSL "https://gitweb.git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD" -o config.guess
+curl -fsSL "http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD" -o config.sub
 [ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
 [ ! -f config.status ] && ./configure --prefix=$TARGET_DIR --disable-shared
 make
