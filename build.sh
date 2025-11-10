@@ -146,10 +146,10 @@ download \
   "https://github.com/libass/libass/archive/"
 
 download \
-  "lame-3.99.5.tar.gz" \
+  "59a722d49e9f2bea65917dcdd17b94c710a02f0c.tar.gz" \
   "" \
-  "84835b313d4a8b68f5349816d33e07ce" \
-  "http://downloads.sourceforge.net/project/lame/lame/3.99"
+  "37fce5d82b8eda298b199cf46035da9e" \
+  "https://github.com/zlargon/lame/archive/"
 
 download \
   "opus-1.1.2.tar.gz" \
@@ -170,10 +170,10 @@ download \
   "https://rtmpdump.mplayerhq.hu/download/"
 
 download \
-  "soxr-0.1.2-Source.tar.xz" \
+  "70ff919c5cda05d420267bd7cd6f55658e9c3ca2.tar.gz" \
   "" \
-  "0866fc4320e26f47152798ac000de1c0" \
-  "https://sourceforge.net/projects/soxr/files/"
+  "9c72173b1c9135606c2ebe54e67620b7" \
+  "https://github.com/rust-media/soxr/archive/"
 
 download \
   "release-0.98b.tar.gz" \
