@@ -631,7 +631,7 @@ install -Dvm644 libavutil/x86/asm.h -t "$TARGET_DIR"/include/libavutil/x86/
 install -Dvm644 libavcodec/vlc.h -t "$TARGET_DIR"/include/libavcodec/
 install -Dvm644 libavcodec/sei.h -t "$TARGET_DIR"/include/libavcodec/
 install -Dvm644 libavcodec/h264.h -t "$TARGET_DIR"/include/libavcodec/
-install -Dvm644 libavcodec/hevc/hevc.h -t "${PKGDIR}"/usr/include/libavcodec/hevc/
+install -Dvm644 libavcodec/hevc/hevc.h -t "$TARGET_DIR"/usr/include/libavcodec/hevc/
 
 # Clean
 make distclean
