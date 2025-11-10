@@ -229,9 +229,24 @@ download \
   "40aedb499cb2b6f106d909d9d97f869a" \
   "https://github.com/libsdl-org/SDL/releases/download/release-2.0.22"
 
+download \
+  "161f3b51e282cd6d2bc146b2755f14dab73ca014.zip" \
+  "libva-161f3b51e282cd6d2bc146b2755f14dab73ca014" \
+  "nil" \
+  "https://github.com/intel/libva/archive"
+
 [ $download_only -eq 1 ] && exit 0
 
 TARGET_DIR_SED=$(echo $TARGET_DIR | awk '{gsub(/\//, "\\/"); print}')
+
+
+echo "*** Building vaapi ***"
+cd $BUILD_DIR/libva*
+[ $rebuild -eq 1 -a -f Makefile ] && make distclean || true
+./autogen.sh
+./configure --prefix=$TARGET_DIR --disable-shared
+make -j $jval
+make install
 
 if [ $is_x86 -eq 1 ]; then
     echo "*** Building yasm ***"
@@ -519,7 +534,9 @@ if [ "$platform" = "linux" ]; then
     --enable-nonfree \
     --enable-openssl \
     --enable-runtime-cpudetect \
-    --enable-version3
+    --enable-version3 \
+    --enable-vaapi \
+    --enable-encoder=libx264,libx265,h264_vaapi,hevc_vaapi,av1_vaapi
 elif [ "$platform" = "darwin" ]; then
   [ ! -f config.status ] && PATH="$BIN_DIR:$PATH" \
   PKG_CONFIG_PATH="${TARGET_DIR}/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:/usr/local/Cellar/openssl/1.0.2o_1/lib/pkgconfig" ./configure \
