@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 set -u
@@ -559,5 +559,51 @@ fi
 
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
+
+# Build cbs
+# See https://github.com/AOSC-Dev/aosc-os-abbs/blob/stable/app-multimedia/ffmpeg/02-static-libs-sunshine/build
+echo "*** Building cbs ***"
+CBS_SOURCE=(
+    "libavcodec/cbs.o"
+    "libavcodec/cbs_h2645.o"
+    "libavcodec/cbs_av1.o"
+    "libavcodec/cbs_vp9.o"
+    "libavcodec/cbs_mpeg2.o"
+    "libavcodec/cbs_sei.o"
+    "libavcodec/h264_levels.o"
+    "libavcodec/h2645_parse.o"
+    "libavcodec/vp9data.o"
+    "libavutil/intmath.o"
+)
+
+ar -crv "libcbs.a" "${CBS_SOURCE[@]}"
+
+echo "*** Installing headers and static libs for cbs***"
+install -Dvm644 libcbs.a -t "$TARGET_DIR"/lib/
+install -Dvm644 libavcodec/cbs.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/cbs_h264.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/cbs_sei.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/cbs_h265.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/cbs_h2645.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/h2645_parse.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/get_bits.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/mathops.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/h264_levels.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavutil/attributes_internal.h -t "$TARGET_DIR"/include/libavutil/
+install -Dvm644 libavutil/intmath.h -t "$TARGET_DIR"/include/libavutil/
+install -Dvm644 config.h -t "$TARGET_DIR"/include/
+# mathops incl. x86/arm/mips/ppc
+install -Dvm644 libavcodec/x86/mathops.h -t "$TARGET_DIR"/include/libavcodec/x86/
+install -Dvm644 libavcodec/arm/mathops.h -t "$TARGET_DIR"/include/libavcodec/arm/
+install -Dvm644 libavcodec/mips/mathops.h -t "$TARGET_DIR"/include/libavcodec/mips/
+install -Dvm644 libavcodec/ppc/mathops.h -t "$TARGET_DIR"/include/libavcodec/ppc/
+# avutil's asm.h only x86
+install -Dvm644 libavutil/x86/asm.h -t "$TARGET_DIR"/include/libavutil/x86/
+install -Dvm644 libavcodec/vlc.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/sei.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/h264.h -t "$TARGET_DIR"/include/libavcodec/
+install -Dvm644 libavcodec/hevc.h -t "$TARGET_DIR"/include/libavcodec/
+
+# Clean
 make distclean
 hash -r
