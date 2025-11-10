@@ -109,10 +109,10 @@ download \
   "https://github.com/Haivision/srt/archive/refs/tags/"
 
 download \
-  "x264-stable.tar.gz" \
+  "x264-0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee.tar.gz" \
   "" \
   "nil" \
-  "https://code.videolan.org/videolan/x264/-/archive/stable/"
+  "https://code.videolan.org/videolan/x264/-/archive/0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee/"
 
 download \
   "x265_3.4.tar.gz" \
