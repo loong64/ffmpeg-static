@@ -636,4 +636,8 @@ install -Dvm644 libavcodec/hevc/hevc.h -t "$TARGET_DIR"/usr/include/libavcodec/h
 
 # Clean
 make distclean
+
+# Install pkgconfig helper script
+install -Dvm766 "$ENV_ROOT/update_pkgconfig.sh" -t "$TARGET_DIR"/
+
 hash -r
