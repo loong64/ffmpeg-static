@@ -165,10 +165,10 @@ download \
   "https://github.com/webmproject/libvpx/archive"
 
 download \
-  "rtmpdump-2.3.tgz" \
-  "" \
-  "eb961f31cd55f0acf5aad1a7b900ef59" \
-  "https://rtmpdump.mplayerhq.hu/download/"
+  "6f6bb1353fc84f4cc37138baa99f586750028a01.tar.gz" \
+  "rtmpdump-2.6.tar.gz" \
+  "nil" \
+  "https://github.com/mirror/rtmpdump/archive/"
 
 download \
   "70ff919c5cda05d420267bd7cd6f55658e9c3ca2.tar.gz" \
