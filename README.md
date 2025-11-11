@@ -8,6 +8,12 @@ Three scripts to make a static build of ffmpeg with all the latest codecs (webm 
 Just follow the instructions below. Once you have the build dependencies,
 run ./build.sh, wait and you should get the ffmpeg binary in target/bin
 
+
+Before use
+----------
+
+A script called `update_pkgconfig.sh` is provided in the prebuilt archive to modify `.pc` file automatially when you unpack the bundle on other place. It is important for you to execute this script if you want to use pkgconfig with these libraries!
+
 Build dependencies
 ------------------
 
