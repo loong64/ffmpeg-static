@@ -43,7 +43,9 @@ jobs:
         with:
           image: ghcr.io/loong64/debian:trixie
           options: --cpus=4 --platform linux/loong64 --privileged -v ${{ github.workspace }}:/work
+          shell: bash
           run: |
+            set -e
             cd /work
             apt update; apt install sudo git curl wget jq -y
             git config --global --add safe.directory /work

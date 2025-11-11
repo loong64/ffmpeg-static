@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 set -e
 set -u
+set -x
 
 jflag=
 jval=2
@@ -91,10 +92,10 @@ cd $BUILD_DIR
   "https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/"
 
 download \
-  "OpenSSL_1_0_2o.tar.gz" \
-  "" \
-  "5b5c050f83feaa0c784070637fac3af4" \
-  "https://github.com/openssl/openssl/archive/"
+  "1.1.1zd.tar.gz" \
+  "openssl_1.1.1zd.tar.gz" \
+  "nil" \
+  "https://github.com/kzalewski/openssl-1.1.1/archive/refs/tags/"
 
 download \
   "v1.2.11.tar.gz" \
@@ -115,10 +116,10 @@ download \
   "https://code.videolan.org/videolan/x264/-/archive/0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee/"
 
 download \
-  "x265_3.4.tar.gz" \
-  "" \
-  "e37b91c1c114f8815a3f46f039fe79b5" \
-  "http://download.openpkg.org/components/cache/x265/"
+  "4.1.0.tar.gz" \
+  "x265_4.1.0.tar.gz" \
+  "nil" \
+  "https://github.com/multiarchstore/x265_git/archive/refs/tags/"
 
 download \
   "v0.1.6.tar.gz" \
