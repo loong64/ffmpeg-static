@@ -219,9 +219,9 @@ download \
   "https://github.com/xiph/speex/archive/"
 
 download \
-  "n7.1.1.tar.gz" \
-  "ffmpeg7.1.1.tar.gz" \
-  "5f8157e206bc430cbed92fb62144f30b" \
+  "n8.0.1.tar.gz" \
+  "ffmpeg8.0.1.tar.gz" \
+  "nil" \
   "https://github.com/FFmpeg/FFmpeg/archive"
 
 download \
