@@ -41,7 +41,7 @@ jobs:
       - name: Set up loong64 Debian container
         uses: addnab/docker-run-action@v3
         with:
-          image: ghcr.io/loong64/debian:trixie
+          image: ghcr.io/loong64/loongnix:25
           options: --cpus=4 --platform linux/loong64 --privileged -v ${{ github.workspace }}:/work
           shell: bash
           run: |
